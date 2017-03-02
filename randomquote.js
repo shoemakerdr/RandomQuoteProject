@@ -14,3 +14,30 @@ Manipulate the following DOM elements:
 
 
 */
+
+function ranRGBValue () {
+    return Math.floor(Math.random() * 256)
+}
+
+function randomColorFromStarter(red, green, blue) {
+    var avgRed = (ranRGBValue() + red) / 2;
+    var avgGreen = (ranRGBValue() + green) / 2;
+    var avgBlue = (ranRGBValue() + blue) / 2;
+    return "rgb(" + avgRed + "," + avgGreen + "," + avgBlue + ")";
+}
+console.log(randomColorFromStarter(144, 237, 149));
+console.log(randomColorFromStarter(144, 237, 149));
+console.log(randomColorFromStarter(144, 237, 149));
+console.log(randomColorFromStarter(144, 237, 149));
+console.log(randomColorFromStarter(144, 237, 149));
+
+
+function Quote(quote, author) {
+    this.quote = quote;
+    this.author = author;
+    this.color = randomColorFromStarter(144, 237, 149)
+}
+
+var quote1 = new Quote("I am a dude", "Eddy Dude");
+console.log(quote1);
+console.log(randomColorFromStarter(144, 237, 149));
