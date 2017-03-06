@@ -12,11 +12,18 @@ Manipulate the following DOM elements:
 - tweet button
 - new quote button
 
+function loadQuote() {
+    var htmlQuote = new Quote (jsonQuote.quote, jsonQuote.name);
+    document.getElementById("quote-text") = "<p>" + htmlQuote.quote + "</p>";
+    document.getElementById("author-name") = "<p>" + htmlQuote.author + "</p>";
+    color scheme = htmlQuote.color;
+}
+
 
 */
 
 function ranRGBValue () {
-    return Math.floor(Math.random() * 256)
+    return Math.floor(Math.random() * 256);
 }
 
 function randomColorFromStarter(red, green, blue) {
@@ -25,17 +32,12 @@ function randomColorFromStarter(red, green, blue) {
     var avgBlue = (ranRGBValue() + blue) / 2;
     return "rgb(" + avgRed + "," + avgGreen + "," + avgBlue + ")";
 }
-console.log(randomColorFromStarter(144, 237, 149));
-console.log(randomColorFromStarter(144, 237, 149));
-console.log(randomColorFromStarter(144, 237, 149));
-console.log(randomColorFromStarter(144, 237, 149));
-console.log(randomColorFromStarter(144, 237, 149));
 
 
 function Quote(quote, author) {
     this.quote = quote;
     this.author = author;
-    this.color = randomColorFromStarter(144, 237, 149)
+    this.color = randomColorFromStarter(144, 237, 149);
 }
 
 var quote1 = new Quote("I am a dude", "Eddy Dude");
