@@ -12,11 +12,22 @@ Manipulate the following DOM elements:
 - tweet button
 - new quote button
 
+
+
 function loadQuote() {
-    var htmlQuote = new Quote (jsonQuote.quote, jsonQuote.name);
-    document.getElementById("quote-text") = "<p>" + htmlQuote.quote + "</p>";
-    document.getElementById("author-name") = "<p>" + htmlQuote.author + "</p>";
-    color scheme = htmlQuote.color;
+    **do some js to change the background and button colors to random colors from a palette**
+    
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            jsonArray = JSON.parse(this.responseText);
+            var jsonQuote = jsonArray[Math.random() * jsonArray.length];
+            document.getElementById("quote-text").innerHTML = htmlQuote.quote;
+            document.getElementById("author-name").innerHTML = htmlQuote.name;
+        }
+    }
+    xmlhttp.open("GET", "https://raw.githubusercontent.com/shoemakerdr/RandomQuoteProject/master/quotes.json", true);
+    xmlhttp.send();
 }
 
 
