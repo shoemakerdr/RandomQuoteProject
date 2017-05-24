@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="randomquote.css">
 	<script src="randomquote.js"></script>
 </head>
-<body onload="loadQuote()">
+<body>
 	<h1>Random Quotes for Random Folks</h1>
 
 	<section id="quote-box">
@@ -13,9 +13,9 @@
 			<p id="quote-text"></p>
 			<p id="author-name"></p>
 		</div>
-		<div id="buttons">
-			<button onclick="window.open(twitter)">Tweet</button>
-			<button onclick="loadQuote()">New Quote</button>
+		<div class="buttons">
+			<button id="tweet-button">Tweet</button>
+			<button id="change-button">New Quote</button>
 		</div>
 
 	</section>
