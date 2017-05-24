@@ -4,6 +4,7 @@ body {
 }
 h1 {
 	color: #FFFFFF;
+    text-align: center;
 }
 section {
 	margin-left: 10%;
@@ -16,7 +17,7 @@ button {
 	background-color: #9d4fc6;
 	color: #FFFFFF;
 }
-#buttons {
+.buttons {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;

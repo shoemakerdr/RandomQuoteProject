@@ -1,38 +1,38 @@
-/*
-Manipulate the following DOM elements:
-- quote text[x]
-- author text[x]
-- tweet button[ ]
-- new quote button[ ]
 
-*/
-var twitter;
+document.addEventListener("DOMContentLoaded", function() {
 
-function loadQuote() {
-    // do some js to change the background and button colors to random colors 
-    // from a palette
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var jsonArray = JSON.parse(this.responseText);
-            var jsonQuote = jsonArray[Math.floor(Math.random() * jsonArray.length)];
-            document.getElementById("quote-text").innerHTML = "\"" + jsonQuote.quote + "\"";
-            document.getElementById("author-name").innerHTML = "- " + jsonQuote.name;
-            twitter = "https://twitter.com/intent/tweet?hashtags=FreeCodeCamp&text=" + "\"" + jsonQuote.quote + "\" " + "-" + jsonQuote.name; 
-        }
+    // define elements
+    const tweetButton = document.getElementById("tweet-button");
+    const quoteDiv = document.getElementById("quote-text");
+    const nameDiv = document.getElementById("author-name");
+    const changeButton = document.getElementById("change-button");
+    let twitterURL;
+
+    // initial quote loading/rendering
+    loadQuote();
+
+    // binding event listeners
+    changeButton.addEventListener('click', loadQuote);
+
+    tweetButton.addEventListener('click', () => {
+        window.open(twitterURL, '_blank');
+    });
+
+    // gets new quote from quotes.json
+    function loadQuote() {
+        fetch('https://raw.githubusercontent.com/shoemakerdr/RandomQuoteProject/master/quotes.json')
+            .then(res => res.json())
+            .then(render)
+            .catch(err => console.log(err));
     }
-    xmlhttp.open("GET", "https://raw.githubusercontent.com/shoemakerdr/RandomQuoteProject/master/quotes.json", true);
-    xmlhttp.send();
-}
 
-function ranRGBValue () {
-    return Math.floor(Math.random() * 256);
-}
+    // renders quote to page
+    function render(data) {
+        const rand = data[Math.floor(Math.random() * data.length)];
+        quoteDiv.innerHTML = `"${rand.quote}"`;
+        nameDiv.innerHTML = `- ${rand.name}`;
+        // redefine twitterURL for new quote
+        twitterURL = `https://twitter.com/intent/tweet?hashtags=FreeCodeCamp&text="${rand.quote} "-${rand.name}`;
+    }
 
-// 
-function randomColorFromStarter(red, green, blue) {
-    var avgRed = (ranRGBValue() + red) / 2;
-    var avgGreen = (ranRGBValue() + green) / 2;
-    var avgBlue = (ranRGBValue() + blue) / 2;
-    return "rgb(" + avgRed + "," + avgGreen + "," + avgBlue + ")";
-}
+});
